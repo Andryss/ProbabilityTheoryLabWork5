@@ -75,6 +75,7 @@ def calculate_empirical_distribution_function(info: SeriesInfo):
     fig, ax = plt.subplots()
     ax.plot(x_vals, y_vals)
     ax.set_title("Empirical distribution function")
+    ax.grid()
     info.empirical_distribution_function = Function(fig, ax)
 
 

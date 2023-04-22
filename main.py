@@ -1,16 +1,32 @@
-# This is a sample Python script.
+import sys
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
-
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+from  numbers_holder import *
+from series_analyzer import *
 
 
-# Press the green button in the gutter to run the script.
+def print_result(series_info: SeriesInfo):
+    np.set_printoptions(linewidth=sys.maxsize)
+    print(f"\nResult:")
+    print(f"\nSource series: {series_info.source_series}")
+    print(f"\nVariational series: {series_info.variational}")
+    print(f"\nExtremal values: min {series_info.extremal_values[0]} max {series_info.extremal_values[1]}")
+    print(f"\nRange: {series_info.range}")
+    print(f"\nSample mean: {series_info.sample_mean}")
+    print(f"\nSample variance: {series_info.sample_variance}")
+    print(f"\nSample deviation: {series_info.sample_deviation}")
+    series_info.empirical_distribution_function.fig.show()
+    series_info.distributed_frequencies_histogram.fig.show()
+    series_info.distributed_frequencies_polygon.fig.show()
+
+
+def run():
+    try:
+        numbers = get_numbers()
+        series_info = analyze_series(numbers)
+        print_result(series_info)
+    except Exception as e:
+        print(e)
+
+
 if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    run()
